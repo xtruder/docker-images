@@ -6,6 +6,6 @@ All images are avalible on [https://hub.docker.com/u/xtruder](https://hub.docker
 
 ## Images
 
-- [k3s-rootlesss](k3s-rootless/README.md): k3s image with fixed rootless support and fuse-overlayfs
-- [dind-rootless](dind-rootless/README.md): rootless docker-in-docker image with fuse-overlayfs support
-- [telepresence](telepresence/README.md): telepresence running inside docker
+- [k3s-rootlesss](k3s-rootless): k3s image with fixed rootless support and fuse-overlayfs
+- [dind-rootless](dind-rootless): rootless docker-in-docker image with fuse-overlayfs support
+- [telepresence](telepresence): telepresence running inside docker
