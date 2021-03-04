@@ -1,7 +1,9 @@
+ARG k3s_version=v1.20.4-k3s1
+
 FROM alpine:3.13 AS alpine
 RUN apk -u --no-cache add shadow-uidmap fuse3
 
-FROM rancher/k3s:v1.20.4-k3s1
+FROM rancher/k3s:$k3s_version
 
 COPY --from=alpine /etc/passwd /etc/group /etc/shadow /etc/subgid /etc/subuid /etc/
 COPY --from=alpine /usr/bin/newgidmap /usr/bin/newuidmap /usr/sbin/mount.fuse3 /usr/bin/
