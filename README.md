@@ -6,6 +6,4 @@ All images are avalible on [https://hub.docker.com/u/xtruder](https://hub.docker
 
 ## Images
 
-### k3s-rootless
-
-k3s with rootless support
+- [k3s-rootlesss](k3s-rootless/README.md): k3s image with fixed rootless support and fuse-overlayfs
