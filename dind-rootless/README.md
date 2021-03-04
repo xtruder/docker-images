@@ -13,3 +13,24 @@ Original image does not have fuse-overlayfs binary. This image adds fuse-overlay
 ```
 docker run -e DOCKER_DRIVER=fuse-overlayfs --privileged xtruder/dind-rootless:latest
 ```
+
+## docker-compose example
+
+```yaml
+version: '3'
+services:
+  docker:
+    image: xtruder/dind-rootless:latest
+    command: ["--insecure-registry=registry.kube-system.svc.cluster.local:5000"]
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+      DOCKER_DRIVER: fuse-overlayfs
+    volumes:
+      - docker:/var/lib/docker
+    privileged: yes
+    security_opt:
+      - label:disable
+    network_mode: bridge
+volumes:
+  docker:
+```
