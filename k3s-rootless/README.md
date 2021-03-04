@@ -1,4 +1,4 @@
-# k3s-rootless
+# k3s-rootless (xtruder/k3s-rootless:latest)
 
 k3s image with fixed rootless support and fuse-overlayfs.
 
