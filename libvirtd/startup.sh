@@ -23,10 +23,11 @@ trap 'exit_handler; exit 130' INT
 # try to create /dev/kvm if it does not exist
 if [ ! -c /dev/kvm ]; then
   echo creating /dev/kvm
-  mknod /dev/kvm c 10 232
+  mknod -m 0660 /dev/kvm c 10 232
 fi
 
 # make /dev/kvm writable by kvm user
+chmod 0660 /dev/kvm
 chown root:kvm /dev/kvm
 
 # try to create tun device if it does not exist
