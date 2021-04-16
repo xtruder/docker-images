@@ -10,3 +10,6 @@ All images are avalible on [https://hub.docker.com/u/xtruder](https://hub.docker
 - [dind-rootless](dind-rootless): rootless docker-in-docker image with fuse-overlayfs support
 - [telepresence](telepresence): telepresence running inside docker
 - [libvirtd](libvirtd): libvirtd running inside docker
+- [kali-base](kali-base): kali base image
+- [kali-default](kali-default): kali with default packages
+- [kali-desktop](kali-desktop): kali desktop
