@@ -18,5 +18,5 @@ services:
       - NET_BIND_SERVICE
     security_opt:
       - label:disable
-    network_mode: "service:netns"
+    network_mode: "bridge"
 ```
