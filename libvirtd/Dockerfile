@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.10
 
 # install qemu-kvm, libvirt daemon and required dependencies
 RUN apt-get update -y && \
