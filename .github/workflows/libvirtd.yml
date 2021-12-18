@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/libvirtd
+  IMAGE_NAME: ${{ github.repository_owner }}/libvirtd:latest
 
 jobs:
   build-and-push-image:
@@ -20,12 +20,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Log in to the Container registry
         uses: docker/login-action@v1
@@ -39,5 +33,4 @@ jobs:
         with:
           context: libvirtd
           push: true
-          tags: latest
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
