@@ -1,5 +1,7 @@
 # weston-rdp
 
+![workflow status](https://github.com/xtruder/docker-images/actions/workflows/weston-rdp.yml/badge.svg)
+
 Weston wayland compositor running in container via RDP backend.
 
 ## About
