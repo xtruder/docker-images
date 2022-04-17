@@ -1,21 +1,37 @@
-FROM ubuntu:21.10
+FROM alpine
 
-# install qemu-kvm, libvirt daemon and required dependencies
-RUN apt-get update -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils && \
-    apt-get autoclean && \
-    apt-get autoremove
+RUN apk add --no-cache \
+    supervisor \
+    ovmf \
+    seabios \
+    libvirt-client \
+    libvirt-daemon \
+    libvirt-common-drivers \
+    libvirt-qemu \
+    qemu-system-x86_64 \
+    qemu-audio-alsa \
+    qemu-audio-oss \
+    qemu-audio-pa \
+    qemu-audio-sdl \
+    qemu-audio-spice \
+    qemu-block-curl \
+    qemu-block-dmg-bz2 \
+    qemu-block-nfs \
+    qemu-block-ssh \
+    qemu-chardev-spice \
+    qemu-hw-display-qxl \
+    qemu-hw-display-virtio-gpu \
+    qemu-hw-display-virtio-gpu-pci \
+    qemu-hw-display-virtio-vga \
+    qemu-hw-usb-redirect \
+    qemu-img \
+    iproute2 \
+    iproute2-tc
 
-# copy configurations
+COPY supervisord.conf /etc/supervisord.conf
 COPY libvirtd.conf /etc/libvirt/libvirtd.conf
-COPY qemu.conf /etc/libvirt/qemu.conf
 
-# copy startup script
-COPY startup.sh /
+VOLUME ["/var/run/libvirt/", "/var/lib/libvirt"]
 
-# create volumes
-VOLUME /run/libvirt
-VOLUME /etc/libvirt/qemu
-VOLUME /var/lib/libvirt
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-ENTRYPOINT [ "/startup.sh" ]

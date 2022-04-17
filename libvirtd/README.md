@@ -20,8 +20,7 @@ This image is based on this gist: https://gist.github.com/kosyfrances/f8ffd9b76f
 
 ```
 docker run \
-  -v /sys/fs/cgroup:/sys/fs/cgroup:rw --cap-add SYS_ADMIN --cap-add SYS_NICE --cap-add NET_ADMIN \
-  xtruder/libvirtd
+  -v /sys/fs/cgroup:/sys/fs/cgroup:rw --privileged ghcr.io/xtruder/libvirtd:latest
 ```
 
 ## docker-compose examples
@@ -36,23 +35,21 @@ services:
   dev:
     image: my-dev-image
     environment:
+      VAGRANT_DEFAULT_PROVIDER: libvirt
+      LIBVIRT_DEFAULT_URI: qemu+tcp://127.0.0.1:16509/system
       MINIKUBE_DRIVER: kvm2
       MINIKUBE_CONTAINER_RUNTIME: containerd
       MINIKUBE_KVM_QEMU_URI: qemu+tcp://127.0.0.1:16509/system
     volumes:
       - libvirt-lib:/var/lib/libvirt
       - libvirt:/run/libvirt
-      - minikube:/home/user/.minikube
+      - minikube:/home/code/.minikube
+      - vagrant:/home/code/.vagrant.d
     network_mode: "service:libvirtd"
   libvirtd:
-    image: xtruder/libvirtd:latest
+    image: ghcr.io/xtruder/libvirtd:latest
     restart: always
-    cap_add:
-      - NET_ADMIN
-      - SYS_ADMIN
-      - SYS_NICE
-    security_opt:
-      - apparmor:unconfined
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - libvirt:/run/libvirt
@@ -61,4 +58,11 @@ services:
     devices:
       - /dev/kvm
     network_mode: bridge
+
+volumes:
+  libvirt:
+  libvirt-lib:
+  libvirt-qemu:
+  vagrant:
+  minikube:
 ```
