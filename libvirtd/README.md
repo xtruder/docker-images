@@ -37,13 +37,7 @@ services:
     environment:
       VAGRANT_DEFAULT_PROVIDER: libvirt
       LIBVIRT_DEFAULT_URI: qemu+tcp://127.0.0.1:16509/system
-      MINIKUBE_DRIVER: kvm2
-      MINIKUBE_CONTAINER_RUNTIME: containerd
-      MINIKUBE_KVM_QEMU_URI: qemu+tcp://127.0.0.1:16509/system
     volumes:
-      - libvirt-lib:/var/lib/libvirt
-      - libvirt:/run/libvirt
-      - minikube:/home/code/.minikube
       - vagrant:/home/code/.vagrant.d
     network_mode: "service:libvirtd"
   libvirtd:
@@ -51,18 +45,16 @@ services:
     restart: always
     privileged: true
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - libvirt:/run/libvirt
+      - libvirt-run:/run/libvirt
       - libvirt-lib:/var/lib/libvirt
-      - libvirt-qemu:/var/lib/libvirt-qemu
+      - libvirt-etc-qemu:/etc/libvirt/qemu
     devices:
       - /dev/kvm
     network_mode: bridge
 
 volumes:
-  libvirt:
+  libvirt-run:
   libvirt-lib:
-  libvirt-qemu:
+  libvirt-etc-qemu:
   vagrant:
-  minikube:
 ```
