@@ -4,6 +4,9 @@ on:
       - 'master'
     paths:
       - 'kali-base/**'
+      - '.github/workflows/kali-base.yml'
+    schedule:
+      - cron: "0 0 * * *"
 
 env:
   REGISTRY: ghcr.io
