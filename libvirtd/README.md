@@ -1,6 +1,6 @@
 # libvirtd
 
-[![image](https://img.shields.io/docker/v/xtruder/libvirtd.svg)](https://hub.docker.com/r/xtruder/libvirtd)
+![workflow status](https://github.com/xtruder/docker-images/actions/workflows/libvirt.yml/badge.svg)
 
 libvirtd running inside docker
 
