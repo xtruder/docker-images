@@ -1,9 +1,0 @@
-#!/usr/bin/with-contenv bash
-set -ex
-USER=${DESTKOP_USER:-root}
-GUI_COMMAND=$( ( which startlxde || which startkde || which startxfce4 || which gdm3 )2>/dev/null )
-if [[ "$DESKTOP_USER" != "root" ]]; then
-    exec su -c "$GUI_COMMAND" "$DESKTOP_USER"
-else
-    exec "$GUI_COMMAND"
-fi

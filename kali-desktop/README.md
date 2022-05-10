@@ -1,6 +1,6 @@
 # kali-desktop
 
-[![image](https://img.shields.io/docker/v/xtruder/kali-desktop.svg)](https://hub.docker.com/r/xtruder/kali-destkop)
+![workflow status](https://github.com/xtruder/docker-images/actions/workflows/kali-desktop.yml/badge.svg)
 
 Kali desktop image
 
