@@ -1,6 +1,6 @@
-# libvirtd
+# [libvirtd](https://github.com/xtruder/docker-images/pkgs/container/libvirtd)
 
-![workflow status](https://github.com/xtruder/docker-images/actions/workflows/libvirt.yml/badge.svg)
+[![workflow status](https://github.com/xtruder/docker-images/actions/workflows/libvirt.yml/badge.svg)](https://github.com/xtruder/docker-images/pkgs/container/libvirtd)
 
 libvirtd running inside docker
 

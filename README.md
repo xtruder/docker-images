@@ -1,14 +1,14 @@
 # docker-images
 
-A bunch of docker images that don't have other place to be.
+**X-Truder custom docker images**
 
-All images are avalible on [https://hub.docker.com/u/xtruder](https://hub.docker.com/u/xtruder)
+All images are avalible on [https://github.com/orgs/xtruder/packages?repo_name=docker-images](https://github.com/orgs/xtruder/packages?repo_name=docker-images)
 
 ## Images
 
-- [k3s-rootlesss](k3s-rootless): k3s image with fixed rootless support and fuse-overlayfs
-- [telepresence](telepresence): telepresence running inside docker
+- [usernetes](usernetes): rootless kubernetes
 - [libvirtd](libvirtd): libvirtd running inside docker
+- [weston-rdp](weston-rdp): small docker image running weston compositor with RDP backend for running wayland/X11 apps
 - [kali-base](kali-base): kali base image
 - [kali-default](kali-default): kali with default packages
-- [kali-desktop](kali-desktop): kali desktop
+- [kali-desktop](kali-desktop): kali desktop image using xrdp

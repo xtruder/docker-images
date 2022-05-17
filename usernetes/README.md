@@ -1,6 +1,6 @@
-# usernetes
+# [usernetes](https://github.com/xtruder/docker-images/pkgs/container/usernetes)
 
-![workflow status](https://github.com/xtruder/docker-images/actions/workflows/usernetes.yml/badge.svg)
+[![workflow status](https://github.com/xtruder/docker-images/actions/workflows/usernetes.yml/badge.svg)](https://github.com/xtruder/docker-images/pkgs/container/usernetes)
 
 Usernetes running in docker, with required changes to export kubeconfig.
 
