@@ -5,8 +5,8 @@ on:
     paths:
       - 'kali-desktop/**'
       - '.github/workflows/kali-desktop.yml'
-    schedule:
-      - cron: "0 0 * * *"
+  schedule:
+    - cron: "0 0 * * *"
 
 env:
   REGISTRY: ghcr.io

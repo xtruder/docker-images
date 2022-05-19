@@ -5,8 +5,8 @@ on:
     paths:
       - 'tor-client/**'
       - '.github/workflows/tor-client.yml'
-    schedule:
-      - cron: "0 0 * * *"
+  schedule:
+    - cron: "0 0 * * *"
 
 env:
   REGISTRY: ghcr.io
