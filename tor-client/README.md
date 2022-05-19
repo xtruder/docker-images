@@ -2,7 +2,7 @@
 
 [![workflow status](https://github.com/xtruder/docker-images/actions/workflows/tor-client.yml/badge.svg)](https://github.com/xtruder/docker-images/pkgs/container/tor-client)
 
-tor daemon running inside docker exposing socks port and dns and nyx as tor control client
+tor client running inside docker exposing socks and dns ports with nyx tui
 
 ## About
 

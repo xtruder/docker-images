@@ -12,3 +12,5 @@ All images are avalible on [https://github.com/orgs/xtruder/packages?repo_name=d
 - [kali-base](kali-base): kali base image
 - [kali-default](kali-default): kali with default packages
 - [kali-desktop](kali-desktop): kali desktop image using xrdp
+- [tor-client](tor-client): tor client running inside docker exposing socks and dns ports with nyx tui
+
