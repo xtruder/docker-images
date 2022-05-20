@@ -1,4 +1,4 @@
-# [trezor-bridge](https://github.com/xtruder/docker-images/pkgs/container/trezord)
+# [trezord](https://github.com/xtruder/docker-images/pkgs/container/trezord)
 
 [![workflow status](https://github.com/xtruder/docker-images/actions/workflows/trezord.yml/badge.svg)](https://github.com/xtruder/docker-images/pkgs/container/trezord)
 
