@@ -24,7 +24,7 @@ services:
       freepbx:
 
   asterisk:
-    image: xtruder/freepbx:latest
+    image: ghcr.io/xtruder/freepbx:latest
     container_name: asterisk
     command: asterisk -f -U asterisk -G dialout -vvvg
     # user: "asterisk:asterisk"
@@ -47,7 +47,7 @@ services:
       freepbx:
 
   freepbx-install:
-    image: xtruder/freepbx:latest
+    image: ghcr.io/xtruder/freepbx:latest
     command: /install.sh
     container_name: freepbx-install
     volumes:
@@ -63,7 +63,7 @@ services:
     network_mode: "service:asterisk"
 
   freepbx:
-    image: xtruder/freepbx:latest
+    image: ghcr.io/xtruder/freepbx:latest
     container_name: freepbx
     command: httpd -DFOREGROUND
     depends_on:
@@ -81,7 +81,7 @@ services:
     network_mode: "service:asterisk"
 
   crond:
-    image: xtruder/freepbx:latest
+    image: ghcr.io/xtruder/freepbx:latest
     container_name: freepbx-cron
     command: crond -n -x misc
     depends_on:
