@@ -14,3 +14,4 @@ All images are avalible on [https://github.com/orgs/xtruder/packages?repo_name=d
 - [kali-desktop](kali-desktop): kali desktop image using xrdp
 - [tor-client](tor-client): tor client running inside docker exposing socks and dns ports with nyx tui
 - [trezord](trezord): minimal alpine based docker container running [trezord-go](https://github.com/trezor/trezord-go)
+- [freepbx](freepbx): [asterisk](https://www.asterisk.org/) and [freepbx](https://www.freepbx.org/) running inside docker container
