@@ -1,0 +1,110 @@
+version: '3.1'
+
+networks:
+  freepbx:
+    driver: bridge
+
+services:
+  db:
+    image: mariadb:10.6.8
+    container_name: freepbx-mariadb
+    command: --sql-mode=ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlrootpass
+      MYSQL_USER: asterisk
+      MYSQL_PASSWORD: asterisk
+      MYSQL_DATABASE: asterisk
+    volumes:
+      - db:/var/lib/mysql
+      - ./01-database.sql:/docker-entrypoint-initdb.d/01-database.sql
+    security_opt:
+      - label:disable
+    networks:
+      freepbx:
+
+  asterisk:
+    image: xtruder/freepbx:latest
+    container_name: asterisk
+    command: asterisk -f -U asterisk -G dialout -vvvg
+    # user: "asterisk:asterisk"
+    # group_add:
+    #   - dialout
+    volumes:
+      - var-lib-asterisk:/var/lib/asterisk
+      - var-log-asterisk:/var/log/asterisk
+      - var-run-asterisk:/var/run/asterisk
+      - var-spool-asterisk:/var/spool/asterisk
+      - etc:/etc
+    devices:
+      - /dev/ttyUSB0
+      - /dev/ttyUSB1
+      - /dev/ttyUSB2
+    ports:
+      - 80/tcp
+      - 443/tcp
+    networks:
+      freepbx:
+
+  freepbx-install:
+    image: xtruder/freepbx:latest
+    command: /install.sh
+    container_name: freepbx-install
+    volumes:
+      - var-lib-asterisk:/var/lib/asterisk
+      - var-run-asterisk:/var/run/asterisk
+      - etc:/etc
+      - var-www:/var/www
+    depends_on:
+      - db
+      - asterisk
+    restart: on-failure
+    pid: "service:asterisk"
+    network_mode: "service:asterisk"
+
+  freepbx:
+    image: xtruder/freepbx:latest
+    container_name: freepbx
+    command: httpd -DFOREGROUND
+    depends_on:
+      - db
+      - asterisk
+    volumes:
+      - var-lib-asterisk:/var/lib/asterisk
+      - var-log-asterisk:/var/log/asterisk
+      - var-run-asterisk:/var/run/asterisk
+      - var-spool-asterisk:/var/spool/asterisk
+      - var-spool-cron:/var/spool/cron
+      - etc:/etc
+      - var-www:/var/www
+    pid: "service:asterisk"
+    network_mode: "service:asterisk"
+
+  crond:
+    image: xtruder/freepbx:latest
+    container_name: freepbx-cron
+    command: crond -n -x misc
+    depends_on:
+      - db
+      - freepbx
+      - asterisk
+    volumes:
+      - var-lib-asterisk:/var/lib/asterisk
+      - var-log-asterisk:/var/log/asterisk
+      - var-run-asterisk:/var/run/asterisk
+      - var-spool-asterisk:/var/spool/asterisk
+      - var-spool-cron:/var/spool/cron
+      - etc:/etc
+      - var-www:/var/www
+    pid: "service:asterisk"
+    network_mode: "service:asterisk"
+
+volumes:
+  db:
+  var-lib-asterisk:
+  var-log-asterisk:
+  var-run-asterisk:
+  var-spool-asterisk:
+  var-spool-cron:
+  var-www:
+  etc:

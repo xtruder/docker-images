@@ -6,6 +6,7 @@ pkgs.mkShell {
     nixpkgs-fmt
     rnix-lsp
     docker-client
+    docker-compose
   ];
 
   hardeningDisable = [ "all" ];
