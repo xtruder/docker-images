@@ -6,33 +6,21 @@ ARG CUDNN_VERSION=8
 FROM nvidia/cuda:${CUDA_VERSION}-cudnn${CUDNN_VERSION}-devel-ubuntu${UBUNTU_VERSION}
 LABEL maintainer "Jaka Hudoklin <jaka@x-truder.net>"
 
-ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"]
 ENV LANG C.UTF-8
 
-SHELL ["/bin/bash", "-c"]
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
-    ccache \
-    cmake \
-    curl \
-    git \
-    libfreetype6-dev \
-    libhdf5-serial-dev \
-    libzmq3-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    pkg-config \
-    software-properties-common \
-    ssh \
-    sudo \
-    unzip \
-    vim \
-    wget
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt update && \
+    DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        wget \
+        sudo \
+        ssh \
+        unzip \
+        build-essential \
+        git \
+        vim && \
+    rm -rf /var/lib/apt/lists/*
 
 # For CUDA profiling
 ENV LD_LIBRARY_PATH /usr/local/cuda-${CUDA}/targets/x86_64-linux/lib:/usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
