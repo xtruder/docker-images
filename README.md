@@ -16,3 +16,4 @@ All images are avalible on [https://github.com/orgs/xtruder/packages?repo_name=d
 - [trezord](trezord): minimal alpine based docker container running [trezord-go](https://github.com/trezor/trezord-go)
 - [freepbx](freepbx): [asterisk](https://www.asterisk.org/) and [freepbx](https://www.freepbx.org/) running inside docker container
 - [proxsign](proxsign): image with [ProXSign](https://www.si-trust.gov.si/sl/podpora-uporabnikom/podpisovanje-s-komponento-proxsign/) running in container
+- [gpu-jupyter](gpu-jupyter): image generated with [gpu-jupyter](https://github.com/iot-salzburg/gpu-jupyter) for running jupyter-lab with nvidia support in container
