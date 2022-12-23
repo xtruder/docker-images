@@ -64,6 +64,12 @@ RUN jupyter labextension install \
         jupyter-leaflet \
         @mamba-org/gator-lab
 
+# copy jupyter server configuration
+COPY jupyter_server_config.py /etc/jupyter/
+
+# run jupyter lab by default
+CMD ["jupyter", "lab"]
+
 # Install pytorch
 #RUN source activate ${CONDA_ENV_NAME} && \
 #    conda install --yes pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
