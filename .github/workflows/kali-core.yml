@@ -3,14 +3,14 @@ on:
     branches:
       - 'master'
     paths:
-      - 'kali-base/**'
-      - '.github/workflows/kali-base.yml'
+      - 'kali-core/**'
+      - '.github/workflows/kali-core.yml'
   schedule:
     - cron: "0 0 * * *"
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/kali-base:latest
+  IMAGE_NAME: ${{ github.repository_owner }}/kali-core:latest
 
 jobs:
   build-and-push-image:
@@ -33,6 +33,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: kali-base
+          context: kali-core
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
