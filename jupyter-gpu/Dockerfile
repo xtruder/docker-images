@@ -37,18 +37,22 @@ RUN groupadd --gid ${USER_GID} ${USERNAME} && \
     echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USERNAME} && \
     chmod 0440 /etc/sudoers.d/${USERNAME}
 
+# install micromamba
+RUN curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+RUN mkdir -p /opt/micromamba && chown $USERNAME:$USERNAME /opt/micromamba 
+ENV MAMBA_ROOT_PREFIX=/opt/micromamba
+
 # set user and working directory
 USER $USERNAME
 WORKDIR /home/${USERNAME}
 
-# install micromamba
-RUN curl https://micro.mamba.pm/install.sh | bash
-ENV PATH=/home/code/.local/bin:$PATH MAMBA_ROOT_PREFIX=/home/${USERNAME}/micromamba
+# install micromamba .bashrc hook
+RUN micromamba shell init -s bash -p /opt/micromamba
 
-# Create the conda environment
-ADD environment.yml environment.yml
-RUN micromamba create -f environment.yml
-ENV PATH=/home/code/micromamba/envs/jupyter/bin:$PATH
+# Create the micromamba environment
+ADD environment.yml /opt/micromamba/environment.yml
+RUN micromamba create -f /opt/micromamba/environment.yml
+ENV PATH=/opt/micromamba/envs/jupyter/bin:$PATH
 
 # enable jupyter server extensions
 RUN jupyter server extension enable --py --sys-prefix jupyterlab jupyterlab_github
