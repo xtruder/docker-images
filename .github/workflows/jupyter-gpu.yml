@@ -36,3 +36,5 @@ jobs:
           context: jupyter-gpu
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
