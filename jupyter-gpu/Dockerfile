@@ -67,8 +67,8 @@ RUN jupyter labextension install \
 # copy jupyter server configuration
 COPY jupyter_server_config.py /etc/jupyter/
 
-# run jupyter lab by default
-CMD ["jupyter", "lab"]
+# run jupyter-hub in singleuser mode by default
+CMD ["jupyterhub-singleuser", "--ip=0.0.0.0"]
 
 # Install pytorch
 #RUN source activate ${CONDA_ENV_NAME} && \
